@@ -10,6 +10,7 @@ import { Application } from "express";
 import { CommonRoutesConfig } from "./common/common.routes.config";
 import { UserRoutes } from "./users/users.routes.config";
 import { AuthRoutes } from "./auth/auth.routes.config";
+import helmet from "helmet";
 
 const app: Application = express();
 const server: http.Server = http.createServer(app);
@@ -23,6 +24,7 @@ if (dotenvResult.error) {
 
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
 
 const loggerOptions: expressWinston.LoggerOptions = {
   transports: [new winston.transports.Console()],
